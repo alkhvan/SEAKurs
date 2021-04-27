@@ -1,11 +1,18 @@
 package de.telekom.sea.seminar;
 
 public class Person {
- //  public Object parent;
-   private String name;
+    private Object parent;
+    private String name;
 
+    public Object getParent() {
+        return parent;
+    }
 
-    public  Person(String name){
+    public void setParent(Object parent) {
+        this.parent = parent;
+    }
+
+       public  Person(String name){
        this.name=name;
     }
 
