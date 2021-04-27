@@ -16,5 +16,29 @@ public class Person extends Child{
       return name;
    }
 
-
+       public boolean equals(Person pers) {
+        if (pers == null) // null check
+        {
+            return false;
+        } else if (this == pers) // self check
+        {
+            return true;
+        }
+        if (getClass() != pers.getClass()) {
+            return false;
+        }
+        //    if ((this.getVorname())!= (p.getVorname())) {
+        //        return false;
+        //    }
+        //    if ((this.getName())!= (p.getName())) {
+        //        return false;
+        //    }
+        else if (this.name.equals(pers.surname)&& this.surname.equals(pers.surname)) // type check
+        {
+            return false;
+        }
+        else {
+            return false;
+        }
+    }
 }
