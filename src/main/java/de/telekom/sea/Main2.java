@@ -8,6 +8,6 @@ public class Main2 {
         app.setParent(null);
         var app2=app.getRootApp();
         System.out.println(app2);
-        app.run (args,"Alberta", "Baumann");
+        app.run ();
     }
 }

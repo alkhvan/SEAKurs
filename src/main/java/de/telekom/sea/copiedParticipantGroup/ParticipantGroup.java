@@ -5,6 +5,7 @@ public class ParticipantGroup  extends Child{
  private Object [] participants = new Object[3];
 
 
+
     public boolean add(Object obj) {
         if (!(obj instanceof Person)){
             System.out.println("It`s not a person");
