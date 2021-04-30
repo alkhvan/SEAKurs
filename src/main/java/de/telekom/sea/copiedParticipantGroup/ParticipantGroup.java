@@ -3,7 +3,7 @@ import de.telekom.sea.seminar.*;
 
 import java.util.Scanner;
 
-public class ParticipantGroup extends Child implements MyList{
+public class ParticipantGroup extends BaseObject implements MyList{
 //    Participant[] participants = new Participant[3];
  private Object [] participants = new Object[3];
 
@@ -58,7 +58,6 @@ public class ParticipantGroup extends Child implements MyList{
             System.out.println("Person was not added, can not perform delete");
             return false;
         }
-
         Person person = (Person) obj;
         for (int i = 0; i < participants.length; i++) {
             if (person.equals(participants[i])) {

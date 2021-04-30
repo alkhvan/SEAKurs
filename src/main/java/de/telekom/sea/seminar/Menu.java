@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 public class Menu implements MyMenu {
     private MyList myList;
+   public Menu Menu (){return this;}
 
     public void setMyList(MyList myList) {
         this.myList = myList;

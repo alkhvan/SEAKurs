@@ -1,6 +1,6 @@
 package de.telekom.sea.seminar;
 
-public class Person extends Child{
+public class Person extends BaseObject{
 
     private String name;
     private String surname;
@@ -31,7 +31,7 @@ public class Person extends Child{
       return name;
    }
 
-       public boolean equals(Person pers) {
+       public boolean equals( final Person pers) {
         if (pers == null) // null check
         {
             return false;
@@ -51,6 +51,9 @@ public class Person extends Child{
         else if (this.name.equals(pers.surname)&& this.surname.equals(pers.surname)) // type check
         {
             return false;
+        }
+        if (!(pers instanceof  Person)){
+          return false;
         }
         else {
             return false;
