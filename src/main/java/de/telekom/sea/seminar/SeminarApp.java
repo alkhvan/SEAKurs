@@ -5,10 +5,12 @@ import de.telekom.sea.copiedParticipantGroup.ParticipantGroup;
 public class SeminarApp extends BaseObject{
     //new branch
     private Object [] persons = new Object[4];
-    private static SeminarApp thisInstance;
+    private static SeminarApp theInstance;
     // constructor einer neuen Instanz
     public SeminarApp() {
-        thisInstance = this;
+        if (theInstance == null) {
+            theInstance = this;
+        }
     }
     public void run() {
         Person child = new Person();

@@ -1,11 +1,20 @@
 package de.telekom.sea.seminar;
+import de.telekom.sea.Interfaces.Event;
+import de.telekom.sea.Interfaces.EventListener;
 import de.telekom.sea.copiedParticipantGroup.MyList;
 import de.telekom.sea.copiedParticipantGroup.ParticipantGroup;
 import java.util.Scanner;
 
-public class Menu implements MyMenu {
+public class Menu implements MyMenu, EventListener {
     private MyList myList;
    public Menu Menu (){return this;}
+
+
+    public void receive( Event event ){
+   //    listAllPersons();
+        System.out.println("Method receive was successfully performed");
+
+    };
 
     public void setMyList(MyList myList) {
         this.myList = myList;
