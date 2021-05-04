@@ -1,15 +1,28 @@
 package de.telekom.sea.Interfaces;
 
-
-import de.telekom.sea.seminar.BaseObject;
-import de.telekom.sea.seminar.Person;
-
 public class ParticipantGroup extends BaseObject implements MyList, EventRegistration{
-//    Participant[] participants = new Participant[3];
+       //    Participant[] participants = new Participant[3];
+ public final int LENGTH;
+
  private Object[] participants = new Object[3];
 
  private EventListener eventListener = null;
 
+    public ParticipantGroup(int LENGTH) {
+        this.LENGTH = LENGTH;
+    }
+
+    public int getLENGTH() {
+        return LENGTH;
+    }
+
+    private boolean isFull() {
+        if (size() == LENGTH) {
+            System.out.println("The list is full.");
+            return true;
+        }
+        return false;
+    }
 
     public void subscribe(EventListener eventListener){
 
@@ -44,7 +57,8 @@ public class ParticipantGroup extends BaseObject implements MyList, EventRegistr
         if (size() < participants.length) {
             participants[size()] = obj;
             System.out.println(person.getSurname() + " " + person.getName()  + " added to the list under #" + size() + ".");
-            Event event = new Event();
+            Event event = new Event ("Element is added to the list", "list is full");
+            System.out.println(event.description);
             this.eventListener.receive(event);
 
 
@@ -62,6 +76,7 @@ public class ParticipantGroup extends BaseObject implements MyList, EventRegistr
 
     public void clear (){
         this.participants = new Person [3];
+        Event event = new Event("All elements are removed from the list","list is empty");
         this.eventListener.receive(null);
     }
 
@@ -84,6 +99,8 @@ public class ParticipantGroup extends BaseObject implements MyList, EventRegistr
                 }
                 participants[participants.length - 1] = null;
                 System.out.println("Element " + i + " was deleted from the list of participants (" + person.getName() + " " + person.getSurname() + ").");
+                Event event = new Event("Element is removed from the list","Element is removed");
+                this.eventListener.receive(event);
                 return true;
             }
         }

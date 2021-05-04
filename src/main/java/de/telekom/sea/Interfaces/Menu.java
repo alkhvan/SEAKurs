@@ -1,17 +1,20 @@
-package de.telekom.sea.seminar;
-import de.telekom.sea.Interfaces.Event;
-import de.telekom.sea.Interfaces.EventListener;
-import de.telekom.sea.Interfaces.MyList;
-// import de.telekom.sea.copiedParticipantGroup.ParticipantGroup;
+package de.telekom.sea.Interfaces;
+
+
 import java.util.Scanner;
 
 public class Menu implements MyMenu, EventListener {
     private MyList myList;
-   public Menu Menu (){return this;}
+
+    public Menu(MyList myList) {
+        this.myList = myList;
+    }
+
+    public Menu menu (){return this;}
 
 
     public void receive( Event event ){
-    //    listAllPersons();
+        listAllPersons();
         System.out.println();
 
     };
@@ -32,11 +35,6 @@ public class Menu implements MyMenu, EventListener {
 
     }
 
-    @Override
-    public void setMyList(de.telekom.sea.copiedParticipantGroup.MyList myList) {
-  //      this.myList = myList;
-        System.out.println("Method setMyList was successfully performed: " + myList);
-    }
 
     public void showMenu() {
         System.out.println("1 - input person");
@@ -98,12 +96,12 @@ public class Menu implements MyMenu, EventListener {
         System.out.println();
     }
 
-    public int size() {
-        int i = 0;
-        while (i < myList.size() && myList.get(i) != null)   //oder <= hier?
-            i++;
-        return i;
-    }
+//    public int size() {
+//        int i = 0;
+//        while (i < myList.size() && myList.get(i) != null)   //oder <= hier?
+//            i++;
+//        return i;
+//    }
 
 
     public void removeAll() {
@@ -117,7 +115,7 @@ public class Menu implements MyMenu, EventListener {
     }
 
 
-    private String checkMenu() {
+    public String checkMenu() {
         String result;
         result = inputLine();
         switch (result) {

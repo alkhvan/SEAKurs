@@ -6,7 +6,6 @@ public interface MyList {
     public int size();
     public Object get(int i);
     public boolean remove(Object obj);
-
     public void clear();
 
 }
