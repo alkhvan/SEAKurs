@@ -1,6 +1,6 @@
 package de.telekom.sea.Interfaces;
 
-public class ParticipantGroup extends BaseObject implements MyList, EventRegistration{
+public class ParticipantGroup extends BaseObject implements MyList, EventRegistration {
        //    Participant[] participants = new Participant[3];
  public final int LENGTH;
 
@@ -80,9 +80,13 @@ public class ParticipantGroup extends BaseObject implements MyList, EventRegistr
         this.eventListener.receive(null);
     }
 
-    public Object get (int i){
-        System.out.println(participants[i]);
-        return participants[i];
+    public Object get (int i) {
+        if (i < participants.length) {
+            System.out.println(participants[i]);
+            return participants[i];
+        } else {
+            throw new RuntimeException("RuntimeException. Please check i");
+        }
     }
 
     public boolean remove (Object obj) {

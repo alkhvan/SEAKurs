@@ -4,13 +4,11 @@ package de.telekom.sea.Interfaces;
 
 public class Main {
 
-    public static void main(String[] args){
+    public static void main(String[] args) throws Exception{
 
         MyList myList =new ParticipantGroup(3);
 
         Person anton = new Person("Anton","Korol");
-//        Person boris = new Person("Boris","Korol");
-//        Person anna = new Person("Anna","Koroleva");
         ParticipantGroup interface1 =new ParticipantGroup(3);
         Event eventTest  = new Event("Test description","test name");
 
