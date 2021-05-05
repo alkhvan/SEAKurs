@@ -8,7 +8,8 @@ public class Main {
 
         MyList myList =new ParticipantGroup(3);
 
-        Person anton = new Person("Anton","Korol");
+    //    Person anton = new Person("Anton","Korol");
+
         ParticipantGroup interface1 =new ParticipantGroup(3);
         Event eventTest  = new Event("Test description","test name");
 
@@ -18,7 +19,7 @@ public class Main {
       //  eventListener.receive(event);
         interface1.subscribe(eventListener);
 
-        interface1.add(anton);
+  //      interface1.add(anton);
   //      interface1.add(boris);
   //      interface1.add(anna);
         interface1.subscribe(eventListener);

@@ -2,9 +2,9 @@ package de.telekom.sea.Interfaces;
 
 public class ParticipantGroup extends BaseObject implements MyList, EventRegistration {
        //    Participant[] participants = new Participant[3];
- public final int LENGTH;
+  public final int LENGTH;
 
- private Object[] participants = new Object[3];
+ private Object[] participants = new Object[1];
 
  private EventListener eventListener = null;
 
@@ -37,8 +37,9 @@ public class ParticipantGroup extends BaseObject implements MyList, EventRegistr
 
         if (size() == participants.length) {
             System.out.println("Sorry! No more places");
-            return false;
+            throw new RuntimeException("RuntimeException. Please check i");
                     }
+
         if (obj == null) {
             System.out.println("Sorry! Null is not a valid person");
             return false;
