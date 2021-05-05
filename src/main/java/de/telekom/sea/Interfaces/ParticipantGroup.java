@@ -64,7 +64,10 @@ public class ParticipantGroup extends BaseObject implements MyList, EventRegistr
 
             return true;
         }
-        return false;
+  //      return false;
+        else {
+            throw new RuntimeException("RuntimeException. Please check i");
+        }
     }
 
     public int size(){
