@@ -6,11 +6,12 @@ import java.util.Scanner;
 public class Menu implements MyMenu, EventListener {
     private MyList myList;
 
+
     public Menu(MyList myList) {
         this.myList = myList;
     }
 
-    public Menu menu (){return this;}
+ //   public Menu menu (){return this;}
 
 
     public void receive( Event event ){
@@ -149,6 +150,7 @@ public class Menu implements MyMenu, EventListener {
     }
 
     public String inputLine() {
+
         String result = "";
         Scanner scanner = new Scanner(System.in);
         result = scanner.nextLine();

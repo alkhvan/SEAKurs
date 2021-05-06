@@ -1,12 +1,36 @@
 package de.telekom.sea.Interfaces;
 
-public class ParticipantGroup extends BaseObject implements MyList, EventRegistration {
+import java.io.Closeable;
+
+public class ParticipantGroup extends BaseObject implements MyList, EventRegistration, Closeable {
        //    Participant[] participants = new Participant[3];
   public final int LENGTH;
 
- private Object[] participants = new Object[1];
+ private Object[] participants = new Object[3];
 
  private EventListener eventListener = null;
+
+ public void test(){
+     MyList myList =new ParticipantGroup(3);
+     ParticipantGroup interface1 =new ParticipantGroup(3);
+     Menu imenu = new Menu (interface1);
+     Event eventTest  = new Event("Test description","test name");
+     EventListener eventListener = new Menu(myList);
+
+     //  eventListener.receive(event);
+     try{
+         imenu.setMyList(interface1);
+         interface1.subscribe(eventListener);
+         imenu.keepAsking();
+         imenu.receive(eventTest);
+     }
+     finally {
+         close();
+     }
+
+
+
+ }
 
     public ParticipantGroup(int LENGTH) {
         this.LENGTH = LENGTH;
@@ -22,6 +46,10 @@ public class ParticipantGroup extends BaseObject implements MyList, EventRegistr
             return true;
         }
         return false;
+    }
+
+    public void close (){
+        System.out.println("is closed");
     }
 
     public void subscribe(EventListener eventListener){
@@ -89,7 +117,7 @@ public class ParticipantGroup extends BaseObject implements MyList, EventRegistr
             System.out.println(participants[i]);
             return participants[i];
         } else {
-            throw new RuntimeException("RuntimeException. Please check i");
+            throw new RuntimeException("RuntimeException.");
         }
     }
 
