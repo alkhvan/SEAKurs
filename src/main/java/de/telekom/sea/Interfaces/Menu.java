@@ -1,11 +1,16 @@
 package de.telekom.sea.Interfaces;
 
 
+import java.io.Closeable;
+import java.io.IOException;
 import java.util.Scanner;
 
-public class Menu implements MyMenu, EventListener {
+public class Menu implements MyMenu, EventListener , Closeable {
     private MyList myList;
 
+    public void close () throws IOException {
+        System.out.println("is closed");
+    }
 
     public Menu(MyList myList) {
         this.myList = myList;

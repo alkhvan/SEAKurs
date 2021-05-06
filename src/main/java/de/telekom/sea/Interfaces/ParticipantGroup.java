@@ -1,8 +1,9 @@
 package de.telekom.sea.Interfaces;
 
 import java.io.Closeable;
+import java.io.IOException;
 
-public class ParticipantGroup extends BaseObject implements MyList, EventRegistration, Closeable {
+public class ParticipantGroup extends BaseObject implements MyList, EventRegistration {
        //    Participant[] participants = new Participant[3];
   public final int LENGTH;
 
@@ -10,22 +11,33 @@ public class ParticipantGroup extends BaseObject implements MyList, EventRegistr
 
  private EventListener eventListener = null;
 
+ private void receiveEvent (Event event){
+     if (this.eventListener != null){
+         this.eventListener.receive(event);
+     }
+ }
+
  public void test(){
      MyList myList =new ParticipantGroup(3);
-     ParticipantGroup interface1 =new ParticipantGroup(3);
-     Menu imenu = new Menu (interface1);
+  //   ParticipantGroup interface1 =new ParticipantGroup(3);
+
      Event eventTest  = new Event("Test description","test name");
      EventListener eventListener = new Menu(myList);
 
      //  eventListener.receive(event);
-     try{
-         imenu.setMyList(interface1);
-         interface1.subscribe(eventListener);
+     try(Menu imenu = new Menu (myList)){
+         imenu.setMyList(myList);
+         subscribe(eventListener);
          imenu.keepAsking();
          imenu.receive(eventTest);
      }
-     finally {
-         close();
+     catch (IOException e){
+         e.printStackTrace();
+       //  close();
+     }
+     catch (Exception ex)
+     {
+         ex.printStackTrace();
      }
 
 
@@ -48,9 +60,6 @@ public class ParticipantGroup extends BaseObject implements MyList, EventRegistr
         return false;
     }
 
-    public void close (){
-        System.out.println("is closed");
-    }
 
     public void subscribe(EventListener eventListener){
 
@@ -88,7 +97,8 @@ public class ParticipantGroup extends BaseObject implements MyList, EventRegistr
             System.out.println(person.getSurname() + " " + person.getName()  + " added to the list under #" + size() + ".");
             Event event = new Event ("Element is added to the list", "list is full");
             System.out.println(event.description);
-            this.eventListener.receive(event);
+      //      this.eventListener.receive(event);
+      //      receiveEvent(characteristicIsNull);
 
 
             return true;
