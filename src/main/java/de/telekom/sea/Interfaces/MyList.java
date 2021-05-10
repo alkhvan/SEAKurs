@@ -2,10 +2,11 @@ package de.telekom.sea.Interfaces;
 
 public interface MyList {
 
-    public boolean add(Object obj);
-    public int size();
-    public Object get(int i);
-    public boolean remove(Object obj);
-    public void clear();
+    boolean add(Object obj);
+     int size();
+     Object get(int i);
+     boolean remove(Object obj);
+     void clear();
+      MyList search(String suchBuchst);
 
 }

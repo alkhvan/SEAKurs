@@ -4,7 +4,7 @@ import de.telekom.sea.copiedParticipantGroup.ParticipantGroup;
 
 public class SeminarApp extends BaseObject{
     //new branch
-    private Object [] persons = new Object[4];
+    private Object [] persons = new Object[3];
     private static SeminarApp theInstance;
     // constructor einer neuen Instanz
     public SeminarApp() {

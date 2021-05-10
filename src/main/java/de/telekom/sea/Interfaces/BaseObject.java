@@ -2,9 +2,11 @@ package de.telekom.sea.Interfaces;
 
 public class BaseObject extends Object {
      private Object parent;
-     private static long idCounter =1;
+     private static long idCounter =0;
      private long id;
-     public BaseObject(){};
+     public BaseObject(){
+         this.id = ++idCounter;
+     };
 
     public long getId() {
         return id;
@@ -14,9 +16,7 @@ public class BaseObject extends Object {
         this.id = id;
     }
 
-    BaseObject(long id){
-        this.id= idCounter++;
-    }
+
     @Override
     public boolean equals (Object obj){
        if (obj == null){

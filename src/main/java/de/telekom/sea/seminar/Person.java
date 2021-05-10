@@ -2,8 +2,8 @@ package de.telekom.sea.seminar;
 
 public class Person extends BaseObject{
 
-    private String name;
-    private String surname;
+    public String name;
+    public String surname;
 
     public void setName(String name) {
         this.name = name;

@@ -2,24 +2,40 @@ package de.telekom.sea.Interfaces;
 
 import java.io.Closeable;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class ParticipantGroup extends BaseObject implements MyList, EventRegistration {
        //    Participant[] participants = new Participant[3];
-  public final int LENGTH;
+ private int LENGTH;
 
- private Object[] participants = new Object[3];
+ private Object[] participants;
+    private ArrayList<EventListener> listenerList = new ArrayList();
+ //private EventListener eventListener = null;
 
- private EventListener eventListener = null;
+// private void receiveEvent (Event event){
+//     if (this.eventListener != null){
+//         this.eventListener.receive(event);
+//     }
+// }
+public void subscribe(EventListener eventListener){
+    listenerList.add(eventListener);
+    //this.eventListener = eventListener;
+}
 
- private void receiveEvent (Event event){
-     if (this.eventListener != null){
-         this.eventListener.receive(event);
-     }
- }
+    public void unsubscribeAll(){
+        listenerList.clear();
+    }
+
+
+    private void sendEvent(String eventName, String eventDescription) {
+        Event event = new Event(eventName, eventDescription);
+        for (EventListener e : listenerList) {
+            e.receive(event);
+        }
+    }
 
  public void test(){
      MyList myList =new ParticipantGroup(3);
-  //   ParticipantGroup interface1 =new ParticipantGroup(3);
 
      Event eventTest  = new Event("Test description","test name");
      EventListener eventListener = new Menu(myList);
@@ -44,31 +60,39 @@ public class ParticipantGroup extends BaseObject implements MyList, EventRegistr
 
  }
 
-    public ParticipantGroup(int LENGTH) {
-        this.LENGTH = LENGTH;
+ public boolean startsWith(String prefix, int toffset) {
+
+     return true;
+ }
+
+
+
+ public  MyList search(String searchSurname) {
+     MyList sublist = new ParticipantGroup(3);
+   //  Menu menu = new Menu(subliste);
+
+     for (int i = 0; i < size(); i++) {
+         Object obj = participants[i];
+         Person person = (Person) obj;
+         String surname = person.getSurname();
+
+
+         if (surname.startsWith(searchSurname)) {
+             sublist.add(person);
+             System.out.println(surname);
+
+         }
+     }
+     return sublist;
+ }
+
+    public ParticipantGroup(int length) {
+        this.LENGTH = length;
+        this.participants =new Person[LENGTH];
     }
 
-    public int getLENGTH() {
-        return LENGTH;
-    }
-
-    private boolean isFull() {
-        if (size() == LENGTH) {
-            System.out.println("The list is full.");
-            return true;
-        }
-        return false;
-    }
 
 
-    public void subscribe(EventListener eventListener){
-
-        this.eventListener = eventListener;
-        System.out.println(
-                eventListener  + " is successfully added to Subscription" );
-
-
-    }
 
     public boolean add(Object obj) {
 
@@ -93,20 +117,16 @@ public class ParticipantGroup extends BaseObject implements MyList, EventRegistr
             }
         }
         if (size() < participants.length) {
-            participants[size()] = obj;
+            participants[size()] = person;
             System.out.println(person.getSurname() + " " + person.getName()  + " added to the list under #" + size() + ".");
-            Event event = new Event ("Element is added to the list", "list is full");
-            System.out.println(event.description);
-      //      this.eventListener.receive(event);
-      //      receiveEvent(characteristicIsNull);
-
-
+            //Event newElement = new Event ("Element is added to the list", "New person in the list");
+     //       receiveEvent(newElement);
             return true;
         }
-  //      return false;
-        else {
-            throw new RuntimeException("RuntimeException. Please check i");
-        }
+       return false;
+//        else {
+//            throw new RuntimeException("RuntimeException. Please check i");
+//        }
     }
 
     public int size(){
@@ -118,35 +138,39 @@ public class ParticipantGroup extends BaseObject implements MyList, EventRegistr
 
     public void clear (){
         this.participants = new Person [3];
-        Event event = new Event("All elements are removed from the list","list is empty");
-        this.eventListener.receive(null);
+
     }
 
-    public Object get (int i) {
-        if (i < participants.length) {
-            System.out.println(participants[i]);
-            return participants[i];
+    public Person get (int i) {
+        if (i < participants.length&& i>=0) {
+
+            return (Person) participants[i];
         } else {
-            throw new RuntimeException("RuntimeException.");
+            throw new RuntimeException("RuntimeException. Method get");
         }
     }
 
     public boolean remove (Object obj) {
+     System.out.println("Remove person from the list");
         if (obj == null) {
             System.out.println("Person was not added, can not perform delete");
+            return false;
+        }
+        if (!(obj instanceof Person)){
             return false;
         }
         Person person = (Person) obj;
         for (int i = 0; i < participants.length; i++) {
             if (person.equals(participants[i])) {
-                System.out.println("Deleting element #" + i + "...");
+                System.out.println("Deleting element " + i + "...");
                 for (int j = i; j < (participants.length - 1); j++) {
+
                     participants[j] = participants[j + 1];
                 }
                 participants[participants.length - 1] = null;
                 System.out.println("Element " + i + " was deleted from the list of participants (" + person.getName() + " " + person.getSurname() + ").");
-                Event event = new Event("Element is removed from the list","Element is removed");
-                this.eventListener.receive(event);
+//                Event removeElement = new Event ("Element is removed from the list", "Person in removed");
+//                receiveEvent(removeElement);
                 return true;
             }
         }

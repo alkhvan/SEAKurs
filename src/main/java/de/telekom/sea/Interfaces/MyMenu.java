@@ -6,6 +6,7 @@ public interface MyMenu {
 
      void setMyList(MyList myList);
      void showMenu();
+     void testListe();
      String checkMenu();
 //     void inputPerson();
 //     public int size();
