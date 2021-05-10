@@ -1,9 +1,11 @@
-package de.telekom.sea.seminar;
+package de.telekom.sea.Interfaces;
+
+
 
 public class Person extends BaseObject{
 
-    public String name;
-    public String surname;
+    private String name;
+    private String surname;
 
     public void setName(String name) {
         this.name = name;
@@ -19,11 +21,11 @@ public class Person extends BaseObject{
         return surname;
     }
 
-    public  Person (){
+    public Person(){
 
     }
 
-    public  Person(String name,String surname){
+    public Person(String name, String surname){
        this.name=name;
        this.surname=surname;
     }
@@ -52,7 +54,7 @@ public class Person extends BaseObject{
         {
             return false;
         }
-        if (!(pers instanceof  Person)){
+        if (!(pers instanceof Person)){
           return false;
         }
         else {

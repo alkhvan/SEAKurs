@@ -3,11 +3,14 @@ import de.telekom.sea.copiedParticipantGroup.MyList;
 import de.telekom.sea.copiedParticipantGroup.ParticipantGroup;
 
 public class SeminarApp extends BaseObject{
-    private Object [] persons = new Object[4];
-    private static SeminarApp thisInstance;
+    //new branch
+    private Object [] persons = new Object[3];
+    private static SeminarApp theInstance;
     // constructor einer neuen Instanz
     public SeminarApp() {
-        thisInstance = this;
+        if (theInstance == null) {
+            theInstance = this;
+        }
     }
     public void run() {
         Person child = new Person();

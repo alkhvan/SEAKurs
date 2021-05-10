@@ -1,21 +1,38 @@
-package de.telekom.sea.seminar;
-import de.telekom.sea.Interfaces.Event;
-import de.telekom.sea.Interfaces.EventListener;
-import de.telekom.sea.Interfaces.MyList;
-// import de.telekom.sea.copiedParticipantGroup.ParticipantGroup;
+package de.telekom.sea.Interfaces;
+
+
+import java.io.Closeable;
+import java.io.IOException;
 import java.util.Scanner;
 
-public class Menu implements MyMenu, EventListener {
+public class Menu implements MyMenu, EventListener , Closeable {
     private MyList myList;
-   public Menu Menu (){return this;}
+
+    public void close () throws IOException {
+        System.out.println("is closed");
+    }
+
+    public Menu(MyList myList) {
+        this.myList = myList;
+    }
+
+ //   public Menu menu (){return this;}
 
 
     public void receive( Event event ){
-    //    listAllPersons();
+        listAllPersons();
         System.out.println();
 
     };
-
+    public void testListe(){
+        MyList subliste = new ParticipantGroup(3);
+        Person person1 =new Person("Anna","Frank");
+        subliste.add(person1);
+        Person person2 =new Person("Anka","Frank");
+        subliste.add(person2);
+        Person person3 =new Person("Alfred","Rank");
+        subliste.add(person3);
+    };
     public void setMyList(MyList myList) {
         this.myList = myList;
         System.out.println("Method setMyList was successfully performed: " + myList);
@@ -32,11 +49,6 @@ public class Menu implements MyMenu, EventListener {
 
     }
 
-    @Override
-    public void setMyList(de.telekom.sea.copiedParticipantGroup.MyList myList) {
-  //      this.myList = myList;
-        System.out.println("Method setMyList was successfully performed: " + myList);
-    }
 
     public void showMenu() {
         System.out.println("1 - input person");
@@ -44,6 +56,7 @@ public class Menu implements MyMenu, EventListener {
         System.out.println("3 - list all persons");
         System.out.println("4 - remove all");
         System.out.println("5 - remove person");
+        System.out.println("6 - search person by surname");
         System.out.println("0 - exit");
     }
 
@@ -60,51 +73,33 @@ public class Menu implements MyMenu, EventListener {
         System.out.println("Your person" + name + " " + surname + " was added");
     }
 
-    public void readMenu() {
-
-        System.out.println("Method readMenu was successfully performed");
+    public void inputSearch() {
+        System.out.println("Enter Surname of person.");
+        Scanner scanner = new Scanner(System.in);
+        String surname = scanner.nextLine();
+        MyList sublist = myList.search(surname);
+        this.listAllPersons();
+//        Person person = new Person();
+//        person.setSurname(surname);
+//        MyList searchMeth = new ParticipantGroup(3);
+//        searchMeth.search(surname);
 
     }
 
-    public void readPerson() {
-
-
-    }
 
     public void listAllPersons() {
 
         System.out.println("############### Persons List ###############");
-//        for (int i = 0; i < myList.size(); i++) {
-//         //   Person person = (Person) myList.get(i);
-//     //       System.out.print((i + 1) + ". " + person);
-//            if (myList.get(i) != null) {
-//                Person person = (Person) myList.get(i);
-//                System.out.print((i + 1) + ". " + person);
-//                System.out.println(": " + person.getSurname() + " " + person.getName());
-//            } else {
-//                System.out.println();
-//            }
-//        }
-//        System.out.println("Persons count: " + size() + ".");
-//        //       System.out.println("Method listAllPersons was successfully performed");
-//    }
         for (int i = 0; i < myList.size();  i++){
-            if (myList.get(i) != null) {
-                Person person = (Person) myList.get(i);
+            Object obj = myList.get(i);
+            if (obj != null) {
+                Person person = (Person) obj;
                 System.out.println((i+1) + ". " + person.getSurname() + " " + person.getName());
             }
         }
         System.out.println("Persons count: " + myList.size() + ".");
-        System.out.println();
-    }
 
-    public int size() {
-        int i = 0;
-        while (i < myList.size() && myList.get(i) != null)   //oder <= hier?
-            i++;
-        return i;
     }
-
 
     public void removeAll() {
         myList.clear();
@@ -117,7 +112,7 @@ public class Menu implements MyMenu, EventListener {
     }
 
 
-    private String checkMenu() {
+    public String checkMenu() {
         String result;
         result = inputLine();
         switch (result) {
@@ -141,6 +136,10 @@ public class Menu implements MyMenu, EventListener {
                  System.out.println("It's 5. Remove one person from the list.");
                  removePerson();
                  break;
+            case "6":
+                System.out.println("It's 6. Search person from the list.");
+                inputSearch();
+                break;
             case "0":
                 System.out.println("It's 0. Exit.");
                 break;
@@ -151,6 +150,7 @@ public class Menu implements MyMenu, EventListener {
     }
 
     public String inputLine() {
+
         String result = "";
         Scanner scanner = new Scanner(System.in);
         result = scanner.nextLine();
