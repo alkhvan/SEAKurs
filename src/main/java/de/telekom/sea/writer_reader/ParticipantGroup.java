@@ -1,6 +1,7 @@
-package de.telekom.sea.Interfaces;
+package de.telekom.sea.writer_reader;
 
-import java.io.Closeable;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -46,6 +47,7 @@ public void subscribe(EventListener eventListener){
          subscribe(eventListener);
          imenu.keepAsking();
          imenu.receive(eventTest);
+
      }
      catch (IOException e){
          e.printStackTrace();
@@ -57,11 +59,10 @@ public void subscribe(EventListener eventListener){
      }
 
 
-
  }
 
 
- public  MyList search(String searchSurname) {
+ public MyList search(String searchSurname) {
      MyList sublist = new ParticipantGroup(3);
    //  Menu menu = new Menu(subliste);
 
