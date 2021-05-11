@@ -8,7 +8,7 @@ public class BaseObject extends Object {
          this.id = ++idCounter;
      };
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 

@@ -145,6 +145,20 @@ public void subscribe(EventListener eventListener){
         }
     }
 
+    public boolean isFull() {
+        if (size() == LENGTH) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean isEmpty() {
+        if (size() == 0) {
+            return true;
+        }
+        return false;
+    }
+
     public boolean remove (Object obj) {
      System.out.println("Remove person from the list");
         if (obj == null) {
