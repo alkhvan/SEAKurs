@@ -2,11 +2,8 @@ package de.telekom.sea.writer_reader;
 
 
 
-import java.io.BufferedWriter;
-import java.io.Closeable;
-import java.io.FileWriter;
+import java.io.*;
 
-import java.io.IOException;
 import java.util.Scanner;
 
 public class Menu implements MyMenu, EventListener, Closeable {
@@ -177,7 +174,7 @@ public class Menu implements MyMenu, EventListener, Closeable {
 
     public void saveList ( ) throws IOException {
         System.out.println("Please input file name:");
-        String outputFileName = "src/test/resources/" + inputLine() + ".sea";
+        String outputFileName = "src/test/resources/" + inputLine() + ".csv";
 //        FileWriter fileWriter = new FileWriter(outputFileName);
 //        try (BufferedWriter writer = new BufferedWriter(fileWriter)) {
 //            for (int i = 0; i < myList.size(); i++) {
@@ -197,11 +194,15 @@ public class Menu implements MyMenu, EventListener, Closeable {
 
     public void readList(){
         System.out.println("Please input file name:");
-        String inputFileName = "src/test/resources/" + inputLine() + ".sea";
-        PersonsListReader personsListReader;
-        personsListReader = new PersonsListReader(inputFileName);
-        try {
-            personsListReader.read();
+        String inputFileName = "src/test/resources/" + inputLine() + ".csv";
+
+        try (FileReader fileReader= new FileReader(inputFileName)) {
+            PersonsListReader personsListReader;
+            personsListReader = new PersonsListReader(fileReader);
+            Person [] persons = personsListReader.read();
+            for (int i= 0 ; i < persons.length; i++){
+                System.out.println(persons[i].getId() + " " + persons[i].getSurname()+ " "+ persons[i].getName());
+            }
 
 
         }

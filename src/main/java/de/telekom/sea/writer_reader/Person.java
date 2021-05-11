@@ -28,6 +28,10 @@ public class Person extends BaseObject {
        this.name=name;
        this.surname=surname;
     }
+    public Person(String name){
+        this.name=name;
+
+    }
      public String getName() {
       return name;
    }
