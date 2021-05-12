@@ -6,6 +6,9 @@ import java.io.*;
 
 import java.util.Scanner;
 
+
+import static de.telekom.sea.writer_reader.Salutation.*; //Import from static things
+
 public class Menu implements MyMenu, EventListener, Closeable {
     private MyList myList;
 
@@ -27,11 +30,11 @@ public class Menu implements MyMenu, EventListener, Closeable {
     };
     public void testListe(){
         MyList subliste = new ParticipantGroup(3);
-        Person person1 =new Person("Anna","Frank");
+        Person person1 =new Person("Anna","Frank", MRS);
         subliste.add(person1);
-        Person person2 =new Person("Anka","Frank");
+        Person person2 =new Person("Anka","Frank",  MRS);
         subliste.add(person2);
-        Person person3 =new Person("Alfred","Rank");
+        Person person3 =new Person("Alfred","Rank",MR);
         subliste.add(person3);
     };
     public void setMyList(MyList myList) {
@@ -40,7 +43,7 @@ public class Menu implements MyMenu, EventListener, Closeable {
 
     }
 
-    public void keepAsking() throws IOException {
+    public void keepAsking() throws IOException, IllegalAccessException {
         String result;
         do {
             showMenu();
@@ -63,15 +66,23 @@ public class Menu implements MyMenu, EventListener, Closeable {
         System.out.println("0 - exit");
     }
 
-    public void inputPerson() {
+    public void inputPerson() throws IllegalAccessException {
         System.out.println("Enter Name of person.");
         Scanner scanner = new Scanner(System.in);
         String name = scanner.nextLine();
         System.out.println("Enter Surname of person.");
         String surname = scanner.nextLine();
         Person person = new Person();
+        System.out.println("Enter Salutation of person.");
+        try{person.setSalutation(Salutation.fromString(scanner.nextLine()));}
+        catch (Exception e){
+            System.out.println("Select the gender correctly");
+            inputPerson();
+            return;
+        }
         person.setName(name);
         person.setSurname(surname);
+
         myList.add(person);
         System.out.println("Your person" + name + " " + surname + " was added");
     }
@@ -97,7 +108,7 @@ public class Menu implements MyMenu, EventListener, Closeable {
             Object obj = myList.get(i);
             if (obj != null) {
                 Person person = (Person) obj;
-                System.out.println((i+1) + ". " + person.getSurname() + " " + person.getName());
+                System.out.println((i+1) + ". " + person.getSurname() + " " + person.getName()+ " "+person.getSalutation());
             }
         }
         System.out.println("Persons count: " + myList.size() + ".");
@@ -115,7 +126,7 @@ public class Menu implements MyMenu, EventListener, Closeable {
     }
 
 
-    public String checkMenu() throws IOException {
+    public String checkMenu() throws IOException, IllegalAccessException {
         String result;
         result = inputLine();
         switch (result) {
@@ -192,7 +203,7 @@ public class Menu implements MyMenu, EventListener, Closeable {
         }
     }
 
-    public void readList(){
+    public void readList() throws IllegalAccessException {
         System.out.println("Please input file name:");
         String inputFileName = "src/test/resources/" + inputLine() + ".csv";
 

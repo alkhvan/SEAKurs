@@ -13,12 +13,15 @@ public class PersonReader {
         this.fileReader = fileReader;
     }
 
-    public Object read(String s) {
+    public Object read(String s) throws IllegalAccessException {
         if (s != null) {
             Person person = new Person ();
             String[] result = s.split(";");
             person.setSurname(result[1].trim());
             person.setName(result[2].trim());
+            String salutationString = result[3];
+            Salutation salutation = Salutation.fromString(salutationString);
+       //     person.setSalutation(result[3].trim());
             person.setId(Long.parseLong(result[0].trim()));
             return person;
         }
