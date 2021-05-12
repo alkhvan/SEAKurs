@@ -1,16 +1,22 @@
-package de.telekom.sea.Interfaces;
+package de.telekom.sea.writer_reader;
 
-import java.io.Closeable;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
 public class ParticipantGroup extends BaseObject implements MyList, EventRegistration {
        //    Participant[] participants = new Participant[3];
  private int LENGTH;
+ private MyList myList;
 
  private Object[] participants;
     private ArrayList<EventListener> listenerList = new ArrayList();
- //private EventListener eventListener = null;
+
+    public ParticipantGroup(MyList myList) {
+        this.myList = myList;
+    }
+    //private EventListener eventListener = null;
 
 // private void receiveEvent (Event event){
 //     if (this.eventListener != null){
@@ -46,6 +52,7 @@ public void subscribe(EventListener eventListener){
          subscribe(eventListener);
          imenu.keepAsking();
          imenu.receive(eventTest);
+
      }
      catch (IOException e){
          e.printStackTrace();
@@ -57,11 +64,10 @@ public void subscribe(EventListener eventListener){
      }
 
 
-
  }
 
 
- public  MyList search(String searchSurname) {
+ public MyList search(String searchSurname) {
      MyList sublist = new ParticipantGroup(3);
    //  Menu menu = new Menu(subliste);
 
@@ -144,6 +150,20 @@ public void subscribe(EventListener eventListener){
         }
     }
 
+    public boolean isFull() {
+        if (size() == LENGTH) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean isEmpty() {
+        if (size() == 0) {
+            return true;
+        }
+        return false;
+    }
+
     public boolean remove (Object obj) {
      System.out.println("Remove person from the list");
         if (obj == null) {
@@ -171,7 +191,10 @@ public void subscribe(EventListener eventListener){
         System.out.println("Can't be deleted. " + person.getName() + " " + person.getSurname() + "is not found in the list.");
         return false;
     }
+    public void setMyList(MyList myList){
+    this.myList= myList;
 
+    };
     public class Objects {
 
         public  boolean equals(Object a, Object b)
