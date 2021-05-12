@@ -199,12 +199,12 @@ public class Menu implements MyMenu, EventListener, Closeable {
         try (FileReader fileReader= new FileReader(inputFileName)) {
             PersonsListReader personsListReader;
             personsListReader = new PersonsListReader(fileReader);
-            Person [] persons = personsListReader.read();
-            for (int i= 0 ; i < persons.length; i++){
-                System.out.println(persons[i].getId() + " " + persons[i].getSurname()+ " "+ persons[i].getName());
-            }
-
-
+            setMyList(personsListReader.read());
+            listAllPersons();
+ //           personsListReader.read();
+//            for (int i= 0 ; i < myList.length; i++){
+//                System.out.println(persons[i].getId() + " " + persons[i].getSurname()+ " "+ persons[i].getName());
+//            }
         }
         catch (IOException e) {
             e.printStackTrace();

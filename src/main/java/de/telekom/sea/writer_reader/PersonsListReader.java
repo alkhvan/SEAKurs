@@ -6,6 +6,7 @@ import java.io.FileReader;
 import java.io.IOException;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class PersonsListReader implements Closeable {
     String inputFile;
@@ -18,22 +19,21 @@ public class PersonsListReader implements Closeable {
         this.fileReader = fileReader;
     }
 
-    Person[] read() throws IOException {
-        Person[] persons = new Person[0];
+    MyList read() throws IOException {
+        MyList persons = new ParticipantGroup(3);
         try (BufferedReader bufferedReader = new BufferedReader(fileReader)) {
             ArrayList<Person> list = new ArrayList<>();
             String s = bufferedReader.readLine();
         while (s != null){
             System.out.println(".csv file contains the following information: "+s);
-            list.add(personReader.read(s));
+            persons.add(personReader.read(s));
             s = bufferedReader.readLine();
 
-
         }
-        persons =list.toArray(new Person[0]);
 
-
-        } catch (IOException e) {
+ //       persons =list.toArray(new Person[0]);
+         }
+        catch (IOException e) {
             e.printStackTrace();
         }
 
@@ -45,3 +45,5 @@ public class PersonsListReader implements Closeable {
         fileReader.close();
     }
 }
+
+
