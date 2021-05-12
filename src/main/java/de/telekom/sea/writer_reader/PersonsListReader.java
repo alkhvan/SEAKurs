@@ -19,7 +19,7 @@ public class PersonsListReader implements Closeable {
         this.fileReader = fileReader;
     }
 
-    MyList read() throws IOException {
+    MyList read() throws IOException, IllegalAccessException {
         MyList persons = new ParticipantGroup(3);
         try (BufferedReader bufferedReader = new BufferedReader(fileReader)) {
             ArrayList<Person> list = new ArrayList<>();
