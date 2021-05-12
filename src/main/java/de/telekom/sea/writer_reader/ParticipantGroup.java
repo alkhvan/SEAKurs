@@ -8,10 +8,15 @@ import java.util.ArrayList;
 public class ParticipantGroup extends BaseObject implements MyList, EventRegistration {
        //    Participant[] participants = new Participant[3];
  private int LENGTH;
+ private MyList myList;
 
  private Object[] participants;
     private ArrayList<EventListener> listenerList = new ArrayList();
- //private EventListener eventListener = null;
+
+    public ParticipantGroup(MyList myList) {
+        this.myList = myList;
+    }
+    //private EventListener eventListener = null;
 
 // private void receiveEvent (Event event){
 //     if (this.eventListener != null){
@@ -186,7 +191,10 @@ public void subscribe(EventListener eventListener){
         System.out.println("Can't be deleted. " + person.getName() + " " + person.getSurname() + "is not found in the list.");
         return false;
     }
+    public void setMyList(MyList myList){
+    this.myList= myList;
 
+    };
     public class Objects {
 
         public  boolean equals(Object a, Object b)

@@ -1,7 +1,8 @@
 package de.telekom.sea.writer_reader;
 
 public class BaseObject extends Object {
-     private Object parent;
+ //   protected Object myList;
+    private Object parent;
      private static long idCounter =0;
      private long id;
      public BaseObject(){
