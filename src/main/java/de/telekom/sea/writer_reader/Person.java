@@ -1,28 +1,34 @@
 package de.telekom.sea.writer_reader;
 
 
-public class Person extends BaseObject {
+public class Person extends BaseObject  {
 
     private String name;
     private String surname;
+    private Salutation salutation;
+
 
     public Salutation getSalutation() {
         return salutation;
     }
 
+
     public void setSalutation(Salutation salutation) {
         this.salutation = salutation;
     }
 
-    private Salutation salutation;
+
+
 
     public void setName(String name) {
         this.name = name;
     }
 
+
     public void setSurname(String surname) {
         this.surname = surname;
     }
+
 
 
 
@@ -45,11 +51,13 @@ public class Person extends BaseObject {
 
 
     }
+
      public String getName() {
       return name;
    }
 
-       public boolean equals( final Person pers) {
+
+       public boolean equals(final Person pers) {
         if (pers == null) // null check
         {
             return false;

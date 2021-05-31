@@ -11,10 +11,10 @@ public enum Salutation {
             case "w":
                 return MRS;
             case "men":
-            case "M":
+            case "m":
                 return MR;
             case "d":
-            case "DIVERSE":
+            case "divers":
                 return DIVERS;
             default:
                 throw new IllegalAccessException("Unexpected value: " + string);
