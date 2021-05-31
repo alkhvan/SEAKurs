@@ -68,7 +68,7 @@ public void subscribe(EventListener eventListener){
 
 
  public MyList search(String searchSurname) {
-     MyList sublist = new ParticipantGroup(3);
+     MyList sublist = new ParticipantGroup(LENGTH);
    //  Menu menu = new Menu(subliste);
 
      for (int i = 0; i < size(); i++) {
@@ -137,7 +137,7 @@ public void subscribe(EventListener eventListener){
     }
 
     public void clear (){
-        this.participants = new Person [3];
+        this.participants = new Person [LENGTH];
 
     }
 
