@@ -15,8 +15,6 @@ public class Person extends BaseObject{
         this.surname = surname;
     }
 
-
-
     public String getSurname() {
         return surname;
     }
