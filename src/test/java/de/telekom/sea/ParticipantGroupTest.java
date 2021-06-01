@@ -1,6 +1,8 @@
-import de.telekom.sea.writer_reader.MyList;
-import de.telekom.sea.writer_reader.ParticipantGroup;
-import de.telekom.sea.writer_reader.Person;
+package de.telekom.sea;
+
+import de.telekom.sea.MyList;
+import de.telekom.sea.ParticipantGroup;
+import de.telekom.sea.Person;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -155,8 +157,6 @@ public class ParticipantGroupTest {
         assertEquals(1, cut.size());
 
     }
-
-
 
 
     @AfterEach

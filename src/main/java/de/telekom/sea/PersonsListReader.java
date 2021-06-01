@@ -1,4 +1,4 @@
-package de.telekom.sea.writer_reader;
+package de.telekom.sea;
 
 import java.io.BufferedReader;
 import java.io.Closeable;
@@ -6,7 +6,6 @@ import java.io.FileReader;
 import java.io.IOException;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class PersonsListReader implements Closeable {
     String inputFile;

@@ -1,13 +1,10 @@
-package de.telekom.sea.writer_reader;
+package de.telekom.sea;
 
 
 
 import java.io.*;
 
 import java.util.Scanner;
-
-
-import static de.telekom.sea.writer_reader.Salutation.*; //Import from static things
 
 public class Menu implements MyMenu, EventListener, Closeable {
     private MyList myList;

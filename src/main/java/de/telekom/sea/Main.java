@@ -1,4 +1,4 @@
-package de.telekom.sea.writer_reader;
+package de.telekom.sea;
 
 
 public class Main {

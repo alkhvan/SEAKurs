@@ -1,4 +1,4 @@
-package de.telekom.sea.writer_reader;
+package de.telekom.sea;
 
 public interface MyList {
  void setMyList(MyList myList);

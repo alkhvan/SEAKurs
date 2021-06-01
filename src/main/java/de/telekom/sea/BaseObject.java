@@ -1,16 +1,15 @@
-package de.telekom.sea.seminar;
-
-import de.telekom.sea.copiedParticipantGroup.ParticipantGroup;
-
-import java.util.Objects;
+package de.telekom.sea;
 
 public class BaseObject extends Object {
-     private Object parent;
-     private static long idCounter =1;
+ //   protected Object myList;
+    private Object parent;
+     private static long idCounter =0;
      private long id;
-     public  BaseObject(){};
+     public BaseObject(){
+         this.id = ++idCounter;
+     };
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
@@ -18,9 +17,7 @@ public class BaseObject extends Object {
         this.id = id;
     }
 
-    BaseObject (long id){
-        this.id= idCounter++;
-    }
+
     @Override
     public boolean equals (Object obj){
        if (obj == null){

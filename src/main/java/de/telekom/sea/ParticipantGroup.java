@@ -1,7 +1,5 @@
-package de.telekom.sea.writer_reader;
+package de.telekom.sea;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 

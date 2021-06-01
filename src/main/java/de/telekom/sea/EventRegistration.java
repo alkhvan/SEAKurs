@@ -1,4 +1,4 @@
-package de.telekom.sea.Interfaces;
+package de.telekom.sea;
 
 public interface EventRegistration {
     void subscribe(EventListener eventListener);
