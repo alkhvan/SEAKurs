@@ -16,15 +16,9 @@ public class ParticipantGroupTest {
         cut = new ParticipantGroup(2);
     }
 
-
-//    @Test
-//    void size_zero_test() {
-//        int result = cut.size();
-//        assertEquals(0, result);
-//    }
-
     @Test
     void add_test() {
+        // check whether person could be added
         Person person = new Person("add_test name", "add_test surname");
         boolean result = cut.add(person);
         assertTrue(result);
@@ -34,6 +28,7 @@ public class ParticipantGroupTest {
 
     @Test
     void add_null_test() {
+        // check if person =null
         int size = cut.size();
         boolean result = cut.add(null);
         assertFalse(result);
@@ -42,6 +37,7 @@ public class ParticipantGroupTest {
 
     @Test
     void clear_test() {
+        // check clear methode, that it remove the persons
         Person person = new Person("clear_test name", "clear_test surname");
         cut.add(person);
         int size = cut.size();
@@ -53,13 +49,30 @@ public class ParticipantGroupTest {
 
     @Test
     void add_noPlaces_test() {
-        //preconditions:
+        //preconditions array[2] and place is already occupied:
         Person person = new Person("add_noPlaces_test name", "add_noPlaces_test surname");
+        Person person2 = new Person("add_noPlaces_test name", "add_noPlaces_test surname");
+        Person person3 = new Person("add_noPlaces_test name", "add_noPlaces_test surname");
         cut.add(person);
+        cut.add(person2);
+        System.out.println(cut.size());
+        //test1:
+        assertEquals(RuntimeException.class,noPlacesException(person).getClass());
+
+    }
+
+    @Test
+    void add_noPlaces_test2() {
+        //preconditions array[2] and place is already occupied:
+        Person person = new Person("add_noPlaces_test name", "add_noPlaces_test surname");
+        Person person2 = new Person("add_noPlaces_test name", "add_noPlaces_test surname");
+        Person person3 = new Person("add_noPlaces_test name", "add_noPlaces_test surname");
         cut.add(person);
+        cut.add(person2);
+
+        //test2:
         boolean result;
 
-        //test:
         try {
             result = cut.add(person);
         }
@@ -67,6 +80,29 @@ public class ParticipantGroupTest {
             result = false;
         }
         assertFalse(result);
+
+    }
+    @Test
+    void add_noPlaces_test3() {
+        //preconditions array[2] and place is already occupied:
+        Person person = new Person("add_noPlaces_test name", "add_noPlaces_test surname");
+        Person person2 = new Person("add_noPlaces_test name", "add_noPlaces_test surname");
+        Person person3 = new Person("add_noPlaces_test name", "add_noPlaces_test surname");
+        cut.add(person);
+        cut.add(person2);
+
+        assertThrows(RuntimeException.class,()->{cut.add(person);});
+
+    }
+
+    RuntimeException noPlacesException (Person person){
+        try{
+            cut.add(person);
+        }
+        catch (RuntimeException rte){
+            return rte;
+        }
+        return  null;
     }
 
     @Test
@@ -104,6 +140,22 @@ public class ParticipantGroupTest {
         MyList result = cut.search("search_twoPersons_test");
         assertEquals(2, result.size());
     }
+
+    @Test
+    void remove_test() {
+        // 2 persons should be added and 1 should be removed. check size
+        // precondition
+        Person person = new Person("search_twoPersons_test name", "search_twoPersons_test surname1");
+        Person person1 = new Person("search_twoPersons_test name", "search_twoPersons_test surname2");
+        cut.add(person);
+        cut.add(person1);
+        System.out.println(cut.size());
+        //test
+        assertTrue(cut.remove(person1));
+        assertEquals(1, cut.size());
+
+    }
+
 
 
 

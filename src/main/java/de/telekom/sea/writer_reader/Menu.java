@@ -30,12 +30,12 @@ public class Menu implements MyMenu, EventListener, Closeable {
     };
     public void testListe(){
         MyList subliste = new ParticipantGroup(3);
-        Person person1 =new Person("Anna","Frank", MRS);
-        subliste.add(person1);
-        Person person2 =new Person("Anka","Frank",  MRS);
-        subliste.add(person2);
-        Person person3 =new Person("Alfred","Rank",MR);
-        subliste.add(person3);
+//        Person person1 =new Person("Anna","Frank", MRS);
+//        subliste.add(person1);
+//        Person person2 =new Person("Anka","Frank",  MRS);
+//        subliste.add(person2);
+     //   Person person3 =new Person("Alfred","Rank",MR);
+     //   subliste.add(person3);
     };
     public void setMyList(MyList myList) {
         this.myList = myList;
@@ -73,13 +73,13 @@ public class Menu implements MyMenu, EventListener, Closeable {
         System.out.println("Enter Surname of person.");
         String surname = scanner.nextLine();
         Person person = new Person();
-        System.out.println("Enter Salutation of person.");
-        try{person.setSalutation(Salutation.fromString(scanner.nextLine()));}
-        catch (Exception e){
-            System.out.println("Select the gender correctly");
-            inputPerson();
-            return;
-        }
+   //     System.out.println("Enter Salutation of person.");
+//        try{person.setSalutation(Salutation.fromString(scanner.nextLine()));}
+//        catch (Exception e){
+//            System.out.println("Select the gender correctly");
+//            inputPerson();
+//            return;
+//        }
         person.setName(name);
         person.setSurname(surname);
 
