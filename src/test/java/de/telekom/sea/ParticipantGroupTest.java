@@ -144,7 +144,7 @@ public class ParticipantGroupTest {
     }
 
     @Test
-    void remove_test() {
+    void remove_positive_test() {
         // 2 persons should be added and 1 should be removed. check size
         // precondition
         Person person = new Person("search_twoPersons_test name", "search_twoPersons_test surname1");
@@ -156,6 +156,44 @@ public class ParticipantGroupTest {
         assertTrue(cut.remove(person1));
         assertEquals(1, cut.size());
 
+    }
+
+    @Test
+    void remove_negative_test() {
+        // no persons were added
+        // precondition
+        System.out.println(cut.size());
+        //test
+        assertFalse(cut.remove(null));
+        assertEquals(0, cut.size());
+
+    }
+
+    @Test
+    void remove_personNotInTheList_test() {
+        // check that not added person could not be removed
+        //preconditions:
+        Person person = new Person("remove_positive_test name1", "remove_positive_test surname1");
+        Person person1 = new Person("remove_positive_test name2", "remove_positive_test surname2");
+        cut.add(person);
+
+        assertFalse(cut.remove(person1));
+        assertEquals(1, cut.size());
+        assertEquals(1, cut.search("remove_positive_test surname1").size());
+    }
+
+
+    @Test
+    void get_null_test() {
+        assertNull(cut.get(0));
+    }
+
+    @Test
+    void get_RuntimeException_test() {
+        assertThrows(RuntimeException.class,
+                () -> {
+                    cut.get(-1);
+                });
     }
 
 

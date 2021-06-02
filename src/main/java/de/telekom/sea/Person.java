@@ -65,16 +65,16 @@ public class Person extends BaseObject  {
         {
             return true;
         }
-        if (getClass() != pers.getClass()) {
-            return false;
-        }
+//        if (getClass() != pers.getClass()) {
+//            return false;
+//        }
         //    if ((this.getVorname())!= (p.getVorname())) {
         //        return false;
         //    }
         //    if ((this.getName())!= (p.getName())) {
         //        return false;
         //    }
-        else if (this.name.equals(pers.surname)&& this.surname.equals(pers.surname)) // type check
+        else if (this.surname.equals(pers.surname)&& this.surname.equals(pers.surname)) // type check
         {
             return false;
         }
